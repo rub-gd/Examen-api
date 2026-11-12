@@ -1,0 +1,15 @@
+package com.examen.api.repositories;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.examen.api.entities.Producto;
+
+@Repository
+public interface ProductoRepository extends JpaRepository<Producto, Integer> {
+	Optional<Producto> findByCodigo_sku(String codigo_sku);
+	boolean existByCodigo_sku(String codigo_sku);
+	void deleteByCodigo_sku(String codigo_sku);
+}

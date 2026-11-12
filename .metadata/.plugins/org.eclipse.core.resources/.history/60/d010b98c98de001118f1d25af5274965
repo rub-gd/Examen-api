@@ -1,0 +1,12 @@
+package com.examen.api.controllers;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.examen.api.services.ProductoService;
+
+@RestController
+@RequestMapping()
+public class ProductoController {
+	private ProductoService productoService;
+}

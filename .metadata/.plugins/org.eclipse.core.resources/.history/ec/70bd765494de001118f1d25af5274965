@@ -1,0 +1,16 @@
+package com.examen.api;
+
+import java.util.List;
+
+import com.examen.api.dtos.ProductoRequestDto;
+import com.examen.api.dtos.ProductoResponseDto;
+
+public interface ProductoService {
+	List<ProductoResponseDto> listarTodosLosProductos();
+	
+	ProductoResponseDto crearProducto(ProductoRequestDto creacion);
+	
+	ProductoResponseDto modificarProductoPorCodigo_sku(String codigo_sku, ProductoRequestDto datos_actualizados);
+	
+	void eliminarProductoPorCodigo_sku(String );
+}

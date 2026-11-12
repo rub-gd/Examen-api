@@ -1,0 +1,5 @@
+package com.examen.api.entities;
+
+public class Producto {
+
+}

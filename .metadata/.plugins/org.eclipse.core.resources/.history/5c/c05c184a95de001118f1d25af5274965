@@ -1,0 +1,51 @@
+package com.examen.api.services.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.examen.api.dtos.ProductoRequestDto;
+import com.examen.api.dtos.ProductoResponseDto;
+import com.examen.api.entities.Producto;
+import com.examen.api.repositories.ProductoRepository;
+import com.examen.api.services.ProductoService;
+
+@Service
+public class ProductoServiceImpl implements ProductoService {
+	private ProductoRepository productoRepository;
+	@Override
+	public List<ProductoResponseDto> listarTodosLosProductos() {
+		return null;
+	}
+
+	@Override
+	public ProductoResponseDto crearProducto(ProductoRequestDto creacion) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ProductoResponseDto modificarProductoPorCodigo_sku(String codigo_sku,
+			ProductoRequestDto datos_actualizados) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eliminarProductoPorCodigo_sku(String codigo_sku) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private ProductoResponseDto convertirProductoCogido(Producto productoCogido) {
+		return new ProductoResponseDto(
+			productoCogido.getId_product(),
+			productoCogido.getCodigo_sku(),
+			productoCogido.getNombre(),
+			productoCogido.getDescripcion(),
+			productoCogido.getPrecio(),
+			productoCogido.getStock(),
+			productoCogido.getFecha_alta()
+		);
+	}
+}

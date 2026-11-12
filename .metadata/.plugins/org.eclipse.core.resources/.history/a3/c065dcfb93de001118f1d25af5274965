@@ -1,0 +1,9 @@
+package com.examen.api;
+
+import java.util.List;
+
+import com.examen.api.dtos.ProductoResponseDto;
+
+public interface ProductoService {
+	List<ProductoResponseDto> listarTodosLosProductos();
+}

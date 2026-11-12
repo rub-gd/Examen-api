@@ -1,0 +1,5 @@
+package com.examen.api.dtos;
+
+public record ProductoRequestDto() {
+
+}

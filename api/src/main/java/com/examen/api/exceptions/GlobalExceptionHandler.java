@@ -1,0 +1,29 @@
+package com.examen.api.exceptions;
+
+import java.net.URI;
+import java.time.Instant;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+	@ExceptionHandler(ProductoNotFoundException.class)
+	public ProblemDetail manejarProductoNoEncontrado(ProductoNotFoundException excepcion) {
+		ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, excepcion.getMessage());
+	        problem.setTitle("Producto no encontrado.");
+	        problem.setType(URI.create("https://api.examen.com/errors/not-found"));
+	        problem.setProperty("timestamp", Instant.now());
+        		return problem;
+    }
+	
+	@ExceptionHandler(CodigoAlredyExistsException.class)
+    public ProblemDetail manejarCodigoExistente(CodigoAlredyExistsException excepcion) {
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, excepcion.getMessage());
+	        problem.setTitle("Ya existe un alumno registrado con este código.");
+	        problem.setType(URI.create("https://api.examen.com/errors/not-found"));
+	        problem.setProperty("timestamp", Instant.now());
+	        	return problem;
+    }
+}

@@ -1,0 +1,5 @@
+package com.examen.api.exceptions;
+
+public class ProductoNotFoundException {
+
+}

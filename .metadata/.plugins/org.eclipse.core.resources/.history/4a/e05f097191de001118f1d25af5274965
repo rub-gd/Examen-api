@@ -1,0 +1,14 @@
+package com.examen.api.entities;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Producto", schema = "api")
+public class Producto {
+	@Id
+	@Column(name = "id_product")private Integer id_product;
+	@Column(name = "codigo_sku", length = 10, unique = true, nullable = false)private String codigo_sku;
+}

@@ -1,0 +1,71 @@
+package com.examen.api.services.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.examen.api.dtos.ProductoRequestDto;
+import com.examen.api.dtos.ProductoResponseDto;
+import com.examen.api.entities.Producto;
+import com.examen.api.repositories.ProductoRepository;
+import com.examen.api.services.ProductoService;
+
+@Service
+public class ProductoServiceImpl implements ProductoService {
+	private ProductoRepository productoRepository;
+	
+	public ProductoServiceImpl(ProductoRepository productoRepository) {
+		this.productoRepository = productoRepository;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<ProductoResponseDto> listarTodosLosProductos() {
+		return productoRepository.findAll().stream().map(this::convertirProductoCogido).toList();
+	}
+
+	@Override
+	@Transactional
+	public ProductoResponseDto crearProducto(ProductoRequestDto creacion) {
+		Producto nuevoProducto = new Producto();
+			nuevoProducto.setCodigo_sku(creacion.codigo_sku());
+			nuevoProducto.setNombre(creacion.nombre());
+			nuevoProducto.setDescripcion(creacion.descripcion());
+			nuevoProducto.setPrecio(creacion.precio());
+			nuevoProducto.setStock(creacion.stock());
+			nuevoProducto.setFecha_alta(creacion.fecha_alta());
+				productoRepository.save(nuevoProducto);
+					return convertirProductoCogido(nuevoProducto);
+	}
+
+	@Override
+	@Transactional
+	public ProductoResponseDto modificarProductoPorCodigo_sku(String codigo_sku, ProductoRequestDto datos_actualizados) {
+		Producto productoEncontrado = productoRepository.findByCodigo_sku(codigo_sku).orElseThrow(() -> new RuntimeException("Producto no encontrado."));
+			if (alumnoRepository.existsByDni(dto.dni())) {
+					throw new RuntimeException("Ya existe un alumno registrado con el DNI: ");
+			}
+				productoRepository.save(productoEncontrado);
+					return convertirProductoCogido(productoEncontrado);
+	}
+
+	@Override
+	@Transactional
+	public void eliminarProductoPorCodigo_sku(String codigo_sku) {
+		Producto productoEncontrado = productoRepository.findByCodigo_sku(codigo_sku).orElseThrow(() -> new RuntimeException("Producto no encontrado."));
+			productoRepository.delete(productoEncontrado);
+	}
+
+	private ProductoResponseDto convertirProductoCogido(Producto productoCogido) {
+		return new ProductoResponseDto(
+			productoCogido.getId_product(),
+			productoCogido.getCodigo_sku(),
+			productoCogido.getNombre(),
+			productoCogido.getDescripcion(),
+			productoCogido.getPrecio(),
+			productoCogido.getStock(),
+			productoCogido.getFecha_alta()
+		);
+	}
+}

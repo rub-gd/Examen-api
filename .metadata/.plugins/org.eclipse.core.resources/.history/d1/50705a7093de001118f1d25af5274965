@@ -1,0 +1,5 @@
+package com.examen.api.repositories;
+
+public class ProductoRepository {
+
+}

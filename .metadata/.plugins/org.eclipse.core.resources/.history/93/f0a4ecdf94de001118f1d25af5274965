@@ -1,0 +1,36 @@
+package com.examen.api.services.impl;
+
+import java.util.List;
+
+import com.examen.api.dtos.ProductoRequestDto;
+import com.examen.api.dtos.ProductoResponseDto;
+import com.examen.api.services.ProductoService;
+
+public class ProductoServiceImpl implements ProductoService {
+
+	@Override
+	public List<ProductoResponseDto> listarTodosLosProductos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ProductoResponseDto crearProducto(ProductoRequestDto creacion) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ProductoResponseDto modificarProductoPorCodigo_sku(String codigo_sku,
+			ProductoRequestDto datos_actualizados) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eliminarProductoPorCodigo_sku(String codigo_sku) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
